@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:practice_project/widgets/centered_view.dart';
-import 'package:practice_project/widgets/mobile_navigation_bar.dart';
+import 'package:practice_project/widgets/humberger_menu.dart';
 import 'package:practice_project/widgets/responsive_builder.dart';
+import 'package:practice_project/widgets/tablet_and_mobile_content_section.dart';
 import 'package:practice_project/widgets/web_navigation_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -22,25 +23,19 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildMobileLayout() {
     return Scaffold(
-      appBar: AppBar(),
-      drawer: Drawer(
-        child: SafeArea(
-          child: Column(
-            children: [
-              ListTile(
-                title: Text('Episodes'),
-              ),
-              ListTile(
-                title: Text('About'),
-              )
-            ],
-          ),
-        ),
-      ),
-      body: Column(
-        children: [
-          _buildMainSection(),
+      appBar: AppBar(
+        actions: const [
+          Text('HUMMING\nBIRD .'),
+          Padding(
+            padding: EdgeInsets.only(right: 16),
+          )
         ],
+      ),
+      drawer: const HumbergerMenu(),
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        child: TabletAndMobileContentSection(
+            heading: heading, description: description),
       ),
     );
   }
@@ -49,11 +44,13 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const CenteredView(
+          const Padding(
+            padding: EdgeInsets.only(left: 30.0, right: 30),
             child: WebNavigationBar(),
           ),
-          CenteredView(
-            child: _buildMainSection(),
+          Expanded(
+            child: TabletAndMobileContentSection(
+                heading: heading, description: description),
           ),
         ],
       ),
@@ -67,76 +64,68 @@ class HomeScreen extends StatelessWidget {
           const CenteredView(
             child: WebNavigationBar(),
           ),
-          CenteredView(
-            child: _buildMainSection(),
-          ),
+          _desktopCenteredViewContent(),
         ],
       ),
     );
   }
 
-  Widget _buildMainSection() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          width: 540,
-          padding: const EdgeInsets.only(
-            top: 80,
-            bottom: 80,
+  Widget _desktopCenteredViewContent() {
+    return CenteredView(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width: 540,
+            padding: const EdgeInsets.only(
+              top: 80,
+              bottom: 80,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  heading,
+                  style: const TextStyle(
+                    fontSize: 70,
+                    fontWeight: FontWeight.w900,
+                    height: 1,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  description,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    height: 1.9,
+                    letterSpacing: 0.5,
+                  ),
+                )
+              ],
+            ),
           ),
-          child: _buildMainContentSection(),
-        ),
-        _buildCallToAction()
-      ],
-    );
-  }
-
-  Widget _buildMainContentSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          heading,
-          style: const TextStyle(
-            fontSize: 70,
-            fontWeight: FontWeight.w900,
-            height: 1,
+          SizedBox(
+            child: Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(10),
+              width: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.teal.shade500,
+              ),
+              child: const Text(
+                'Join Course',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
           ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Text(
-          description,
-          style: const TextStyle(
-            fontSize: 18,
-            height: 1.9,
-            letterSpacing: 0.5,
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget _buildCallToAction() {
-    return SizedBox(
-      child: Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(10),
-        width: 200,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: Colors.lightGreen,
-        ),
-        child: const Text(
-          'Join Course',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        ],
       ),
     );
   }

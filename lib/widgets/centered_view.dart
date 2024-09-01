@@ -8,7 +8,7 @@ class CenteredView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.all(16),
       alignment: Alignment.topCenter,
       child: ConstrainedBox(
         constraints: const BoxConstraints(
