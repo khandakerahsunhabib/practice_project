@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:practice_project/app.dart';
 
 void main() {
-  runApp(const WaterTrackerApp());
+  runApp(const WebApp());
 }
