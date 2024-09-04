@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:practice_project/presentation/home_screen.dart';
+import 'package:practice_project/screens/add_to_cart_screen.dart';
 
-class WebApp extends StatelessWidget {
-  const WebApp({super.key});
+class ShoppingCartUI extends StatelessWidget {
+  const ShoppingCartUI({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: AddToCartScreen(),
     );
   }
 }
