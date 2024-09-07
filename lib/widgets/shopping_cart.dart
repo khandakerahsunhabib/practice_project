@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practice_project/screens/product.dart';
+import 'package:practice_project/models/product.dart';
 
 class ShoppingCart extends StatefulWidget {
   final Function(double) onTotalPriceChanged;
