@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:practice_project/app.dart';
+import 'package:flutter/cupertino.dart';
+import 'app.dart';
 
 void main() {
-  runApp(const ShoppingCartUI());
+  runApp(const CrudApp());
 }
